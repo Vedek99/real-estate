@@ -17,5 +17,6 @@ function real_estate_filter_shortcode() {
 
     return ob_get_clean(); 
 }
+add_shortcode('real_estate_filter', 'real_estate_filter_shortcode');
 ?>
 

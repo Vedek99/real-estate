@@ -63,8 +63,6 @@ function real_estate_taxonomy() {
 }
 add_action('init', 'real_estate_taxonomy');
 
-add_shortcode('real_estate_filter', 'real_estate_filter_shortcode');
-
 function filter_real_estate() {
     $paged = isset($_GET['page']) ? intval($_GET['page']) : 1;
     $posts_per_page = 5;
