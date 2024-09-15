@@ -63,60 +63,6 @@ function real_estate_taxonomy() {
 }
 add_action('init', 'real_estate_taxonomy');
 
-function real_estate_duplicate_link($actions, $post) {
-    if ($post->post_type === 'real_estate') {
-        $actions['duplicate'] = '<a href="' . wp_nonce_url('admin.php?action=duplicate_real_estate&post=' . $post->ID, basename(__FILE__), 'duplicate_nonce') . '" title="Дублировать этот объект" rel="permalink">Дублировать</a>';
-    }
-    return $actions;
-}
-add_filter('post_row_actions', 'real_estate_duplicate_link', 10, 2);
-
-function real_estate_duplicate_post() {
-    if (!(isset($_GET['post']) || isset($_POST['post']) || (isset($_REQUEST['action']) && 'duplicate_real_estate' == $_REQUEST['action']))) {
-        wp_die('Нет записи для дублирования');
-    }
-
-    if (!isset($_GET['duplicate_nonce']) || !wp_verify_nonce($_GET['duplicate_nonce'], basename(__FILE__))) {
-        return;
-    }
-
-    $post_id = (isset($_GET['post']) ? $_GET['post'] : $_POST['post']);
-    $post = get_post($post_id);
-
-    if (isset($post) && $post != null) {
-        $new_post = array(
-            'post_title'    => $post->post_title . ' (Копія)',
-            'post_content'  => $post->post_content,
-            'post_status'   => 'draft',
-            'post_type'     => $post->post_type,
-            'post_author'   => $post->post_author,
-            'post_excerpt'  => $post->post_excerpt,
-            'post_category' => wp_get_post_categories($post_id)
-        );
-
-        $new_post_id = wp_insert_post($new_post);
-
-        $meta_fields = get_post_meta($post_id);
-        foreach ($meta_fields as $key => $value) {
-            if ($key !== '_wp_old_slug') {
-                update_post_meta($new_post_id, $key, maybe_unserialize($value[0]));
-            }
-        }
-
-        $taxonomies = get_object_taxonomies($post->post_type);
-        foreach ($taxonomies as $taxonomy) {
-            $post_terms = wp_get_object_terms($post_id, $taxonomy, array('fields' => 'slugs'));
-            wp_set_object_terms($new_post_id, $post_terms, $taxonomy, false);
-        }
-
-        wp_redirect(admin_url('post.php?action=edit&post=' . $new_post_id));
-        exit;
-    } else {
-        wp_die('Ошибка: невозможно дублировать запись');
-    }
-}
-add_action('admin_action_duplicate_real_estate', 'real_estate_duplicate_post');
-
 add_shortcode('real_estate_filter', 'real_estate_filter_shortcode');
 
 function filter_real_estate() {
@@ -199,8 +145,6 @@ function filter_real_estate() {
             'format' => '?page=%#%',
             'prev_text' => __('« Previous', 'text-domain'),
             'next_text' => __('Next »', 'text-domain'),
-            'before_page_number' => '<a href="#" data-page="%#%">',
-            'after_page_number' => '</a>'
         );
         $pagination = paginate_links($pagination_args);
         echo '<div class="pagination">' . $pagination . '</div>';
