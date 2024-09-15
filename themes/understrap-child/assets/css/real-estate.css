@@ -1,0 +1,141 @@
+.real-estate {
+    background: #333470;
+    padding-bottom: 50px;
+}
+
+.real-estate h1 {
+    max-width: 1140px;
+    margin: auto;
+    color: #fff;
+    padding-top: 40px;
+}
+
+.real-estate .real-estate__container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 50px;
+    row-gap: 50px;
+}
+
+.real-estate .real-estate-details {
+    border: 1px solid #403dd3;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.35);
+    transition: .3s all;
+    cursor: pointer;
+    background: #a5aad159;
+}
+
+.real-estate .real-estate-details:hover {
+    transform: scale(1.05);
+}
+
+.real-estate .details-image {
+    display: flex;
+}
+
+.real-estate .details-image .about-building {
+    width: 40%;
+    color: #f7f7f7;
+}
+
+.real-estate .details-image img {
+    width: 60%;
+}
+
+.real-estate .about-rooms ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.real-estate .about-rooms {
+    color: #d6d4d4;
+    font-size: 16px;
+    font-family: sans-serif;
+}
+
+.real-estate__search-result .real-estate__container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.real-estate__search-result .real-estate-item {
+    max-width: 320px;
+}
+
+.real-estate-filter {
+    max-width: 1200px;
+    margin: auto;
+    background: #a5aad159;
+    border-radius: 6px;
+    padding: 20px;
+}
+
+.real-estate-filter-params {
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+    color: #fff;
+}
+
+.filter-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.filter-button input {
+    padding: 10px 20px;
+    border-radius: 6px;
+    border: unset;
+    background: #9297eb;
+    color: #fff;
+}
+
+.real-estate-filter-params input, .real-estate-filter-params select {
+    width: 100%;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    padding: 4px;
+    background: #e4e4e4c7;
+}
+
+.real-estate-search {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    align-items: center;
+    column-gap: 10px;
+}
+
+.real-estate-search__button input {
+    padding: 6px 20px;
+    border-radius: 6px;
+    border: unset;
+    background: #9297eb;
+    color: #fff;
+}
+
+.real-estate-search__input input {
+    padding: 4px;
+}
+
+.real-estate-search__input label {
+    color: #fff;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    column-gap: 15px;
+}
+
+.pagination a {
+    color: #fff;
+}

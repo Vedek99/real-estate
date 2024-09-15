@@ -1,0 +1,11 @@
+/*
+ Theme Name:   Understrap Child
+ Theme URI:    http://example.com/understrap-child
+ Description:  Child theme for Understrap
+ Author:       Vadim
+ Author URI:   http://example.com
+ Template:     understrap
+ Version:      1.0.0
+*/
+
+@import url("../understrap/style.css");
